@@ -1,5 +1,3 @@
-# estruturas.py
-
 class No:
     """
     Representa uma ordem e atua como o nó base para as estruturas encadeadas.
@@ -26,17 +24,56 @@ class Fila:
         self.inicio = None
         self.fim = None
 
+    def esta_vazia(self) -> bool:
+        """Verifica se a fila está vazia."""
+        return self.inicio is None
+
     def enfileirar(self, no: No):
         """Insere uma nova ordem no final da fila (enqueue)."""
-        pass
+        # Garante que o nó inserido não tenha resíduos de ponteiros antigos
+        no.proximo = None 
+        no.anterior = None
+
+        if self.esta_vazia():
+            # Se a fila está vazia, o novo nó é o início e o fim
+            self.inicio = no
+            self.fim = no
+        else:
+            # Se não, adiciona ao final e atualiza o ponteiro de fim
+            self.fim.proximo = no
+            no.anterior = self.fim
+            self.fim = no
 
     def desenfileirar(self) -> No:
         """Remove e retorna a ordem do início da fila (dequeue)."""
-        pass
+        if self.esta_vazia():
+            return None
+        
+        no_removido = self.inicio
+        self.inicio = self.inicio.proximo
+        
+        if self.inicio is None:
+            # Se a fila esvaziou após a remoção, o fim também deve ser None
+            self.fim = None
+        else:
+            # Remove a referência do novo início para o nó removido
+            self.inicio.anterior = None
+            
+        # Isola completamente o nó removido para evitar problemas de referência
+        no_removido.proximo = None
+        no_removido.anterior = None
+        
+        return no_removido
 
-    def esta_vazia(self) -> bool:
-        """Verifica se a fila está vazia."""
-        pass
+
+class NoPilha:
+    """
+    Classe auxiliar para o funcionamento encadeado da Pilha de Undo.
+    Armazena apenas o ID da ordem.
+    """
+    def __init__(self, id_ordem: int):
+        self.id_ordem = id_ordem
+        self.proximo = None
 
 
 class Pilha:
@@ -47,18 +84,31 @@ class Pilha:
     def __init__(self):
         self.topo = None
 
+    def esta_vazia(self) -> bool:
+        """Verifica se a pilha está vazia."""
+        return self.topo is None
+
     def empilhar(self, id_ordem: int):
         """Armazena o ID de uma ordem recém-inserida (push)."""
-        pass
+        novo_no = NoPilha(id_ordem)
+        
+        # O próximo do novo nó aponta para o antigo topo
+        novo_no.proximo = self.topo
+        
+        # O novo nó se torna o novo topo
+        self.topo = novo_no
 
     def desempilhar(self) -> int:
         """Remove e retorna o último ID inserido (pop)."""
-        pass
+        if self.esta_vazia():
+            return None
+            
+        id_removido = self.topo.id_ordem
         
-    def esta_vazia(self) -> bool:
-        """Verifica se a pilha está vazia."""
-        pass
-
+        # O topo passa a ser o nó abaixo dele
+        self.topo = self.topo.proximo
+        
+        return id_removido
 
 class ListaDuplamenteEncadeada:
     """
