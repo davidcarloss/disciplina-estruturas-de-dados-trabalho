@@ -7,7 +7,7 @@ class MotorDeNegociacao:
     Responsável: Pessoa 3
     """
     def __init__(self):
-        self.fila_entrada = Fila()
+        self.fila_entrada = Fila() 
         self.pilha_desfazer = Pilha() # Sistema de Undo
         
         # Livros de ofertas independentes

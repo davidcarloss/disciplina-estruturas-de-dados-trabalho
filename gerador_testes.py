@@ -9,7 +9,7 @@ def gerar_ordens_aleatorias(quantidade_ordens: int) -> list:
     Nota: O uso de 'list' nativa aqui é permitido, pois este script 
     não faz parte das estruturas do projeto avaliadas no critério técnico.
     """
-    ordens = []
+    ordens = []  
     # Lógica de geração aleatória de tipos ('C' ou 'V'), preços e quantidades
     return ordens
 
