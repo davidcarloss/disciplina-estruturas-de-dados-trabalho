@@ -210,7 +210,7 @@ class ListaDuplamenteEncadeada:
         religando os ponteiros (proximo/anterior) corretamente.
         Complexidade: O(1) dado que já temos a referência do nó.
         """
-        if no is None:
+        if no is None: 
             return
 
         # Ajuste do ponteiro da esquerda (anterior)
