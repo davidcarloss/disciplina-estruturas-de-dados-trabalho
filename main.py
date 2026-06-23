@@ -1,10 +1,11 @@
-# main.py
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 from estruturas import No, Fila, Pilha, ListaDuplamenteEncadeada
 
 class MotorDeNegociacao:
     """
     Motor de Negociação que gerencia as ordens e o casamento (match).
-    Responsável: Pessoa 3
     """
     def __init__(self):
         self.fila_entrada = Fila() 
@@ -118,10 +119,10 @@ if __name__ == "__main__":
     
     # Exemplo de teste:
     # 1. Chega uma ordem de Venda de 10 ações a R$ 40.0
-    motor.receber_ordem(1, 'V', 40.0, 10, 1000.0)
+    motor.receber_ordem(1, 'V', 40.0, 10, datetime.now(ZoneInfo("America/Sao_Paulo")).timestamp())
     
     # 2. Chega uma ordem de Compra de 5 ações a R$ 41.0 (Cruza com a venda acima!)
-    motor.receber_ordem(2, 'C', 41.0, 5, 1001.0)
+    motor.receber_ordem(2, 'C', 41.0, 5, datetime.now(ZoneInfo("America/Sao_Paulo")).timestamp())
     
     motor.processar_fila()
     

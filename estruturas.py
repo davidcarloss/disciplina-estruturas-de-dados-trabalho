@@ -1,7 +1,6 @@
 class No:
     """
     Representa uma ordem e atua como o nó base para as estruturas encadeadas.
-    Responsável: Pessoa 1
     """
     def __init__(self, id_ordem: int, tipo: str, preco: float, quantidade: int, timestamp: float):
         self.id_ordem = id_ordem
@@ -18,7 +17,6 @@ class No:
 class Fila:
     """
     Fila de Entrada (FIFO) - Complexidade O(1)
-    Responsável: Pessoa 1
     """
     def __init__(self):
         self.inicio = None
@@ -79,7 +77,6 @@ class NoPilha:
 class Pilha:
     """
     Sistema de Undo (LIFO) - Complexidade O(1)
-    Responsável: Pessoa 1
     """
     def __init__(self):
         self.topo = None
@@ -113,7 +110,6 @@ class Pilha:
 class ListaDuplamenteEncadeada:
     """
     Lista Duplamente Encadeada para o Livro de Ofertas.
-    Responsável: Pessoa 2
     """
     def __init__(self):
         self.inicio = None
